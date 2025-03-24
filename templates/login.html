@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<style>
+    /* Genel Ayarlar */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    /* Başlık */
+    h2 {
+        margin-bottom: 20px;
+        color: #444;
+    }
+    
+    /* Form Konteyneri */
+    form {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Etiket ve Giriş Alanları */
+    form label {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+    
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    
+    /* Buton Stili */
+    form button, form input[type="submit"] {
+        background-color: #0056d6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    form button:hover, form input[type="submit"]:hover {
+        background-color: #004bb5;
+    }
+    
+    /* Kayıt Linki */
+    a {
+        margin-top: 15px;
+        color: #0056d6;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+</style>
+<body>
+    <h2>Login</h2>
+    <form action= "{{ url_for('login') }}" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.email.label }} {{ form.email() }} <br>
+        {{ form.password.label }} {{ form.password() }} <br>
+        {{ form.submit() }}
+    </form>
+    
+    <a href="{{ url_for('register') }}">Hesabın Yok Mı? Kayıt Ol!</a>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+</body>
+</html>
